@@ -1,6 +1,4 @@
 # BonnyBabyStore
-# BonnyBabyStore
-
 BonnyBabyStore is a web application built with ASP.NET Core Razor Pages (.NET 8) for managing an online baby products store. It features user authentication, product management, shopping cart functionality, and an admin area for managing categories, products, orders, and user roles.
 
 ## Features
