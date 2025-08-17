@@ -1,0 +1,58 @@
+﻿@model IEnumerable<BonnyBabyStore.Models.Role>
+@{
+    ViewData["Title"] = "Roles Management";
+    Layout = "_AdminLayout";
+}
+
+<div class="page-header">
+    <h1 class="page-title">Roles Management</h1>
+    <a asp-action="Create" class="btn-add">
+        <i class="fas fa-plus"></i> Add New Role
+    </a>
+</div>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Success"]
+    </div>
+}
+
+<div class="users-table" style="background-color: white; padding: 20px; border-radius: 15px;">
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th style="width:100px;">ID</th>
+                    <th>Role Name</th>
+                    <th style="width: 150px; text-align:right;">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.Name</td>
+                            <td style="text-align:right;">
+                                <div class="action-buttons">
+                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn-action btn-view" title="View"><i class="fas fa-eye"></i></a>
+                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn-action btn-edit" title="Edit"><i class="fas fa-edit"></i></a>
+                                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn-action btn-delete" title="Delete"><i class="fas fa-trash"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="3" class="text-center p-4">No roles found. Click 'Add New Role' to start.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

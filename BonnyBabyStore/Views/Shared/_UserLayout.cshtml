@@ -1,0 +1,129 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Bonny Baby</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Nunito&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="~/css/styles.css" />
+    <link rel="stylesheet" href="~/css/userprofile.css" />
+    @await RenderSectionAsync("Styles", required: false)
+</head>
+<body>
+
+
+    <nav class="custom-navbar navbar navbar-expand-lg">
+        <div class="container-fluid d-flex align-items-center">
+            <a class="navbar-brand d-flex align-items-center gap-2" asp-controller="Home" asp-action="Index">
+                <img src="~/images/logo.jpg" alt="Bonny Baby Logo" class="logo-img">
+                <div class="brand-text">
+                    <span class="bonny">Bonny</span> <span class="baby">Baby</span>
+                </div>
+            </a>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Categories" asp-action="Index">Category</a>
+                </li>
+                <li class="nav-item">
+                    <!-- About us: navigates to #About section on Home page -->
+             
+                       <a class="nav-link" href="javascript:void(0);" data-scroll-target="about">About us</a>
+                      
+
+                </li>
+                <li class="nav-item">
+                    <!-- Contact: navigates to #Contact section on Home page -->
+                    <a class="nav-link" href="javascript:void(0);" data-scroll-target="contact">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Accounts" asp-action="Login">Log In</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="UsersProfile" asp-action="Index">
+                        <div class="user-profile-icon">
+                            <i class="fas fa-user"></i>
+                            <span class="user-status"></span>
+                        </div>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Carts" asp-action="Index">
+                        <div class="cart-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-count">2</span>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <div>
+        <main role="main">
+            @RenderBody()
+        </main>
+    </div>
+
+
+    <footer>
+        <div class="custom-footer">
+            &copy; 2025 Bonny Baby Store. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Smooth scroll for About/Contact links anywhere in the site
+        document.querySelectorAll('a.nav-link[data-scroll-target]').forEach(link => {
+            link.addEventListener('click', function (e) {
+                var targetId = this.getAttribute('data-scroll-target');
+                var el = document.getElementById(targetId);
+       
+                if (el && (window.location.pathname === '/' || window.location.pathname.toLowerCase().endsWith('/home/index'))) {
+                    e.preventDefault();
+                    el.scrollIntoView({ behavior: 'smooth' });
+                } else {
+           
+                    e.preventDefault();
+                 
+                    localStorage.setItem('scrollToSection', targetId);
+                 
+                    window.location.href = '/Home/Index';
+                }
+            });
+        });
+
+        
+        document.addEventListener('DOMContentLoaded', function () {
+            var section = localStorage.getItem('scrollToSection');
+            if (section && (window.location.pathname === '/' || window.location.pathname.toLowerCase().endsWith('/home/index'))) {
+                var el = document.getElementById(section);
+                if (el) {
+                    setTimeout(function () {
+                        el.scrollIntoView({ behavior: 'smooth' });
+                    }, 200);
+                }
+                localStorage.removeItem('scrollToSection');
+            }
+        });
+    </script>
+
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>

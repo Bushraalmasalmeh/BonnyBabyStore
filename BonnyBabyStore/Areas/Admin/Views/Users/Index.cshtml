@@ -1,0 +1,576 @@
+﻿@{
+    ViewData["Title"] = "Users Management";
+    Layout = "_AdminLayout";
+}
+@section Styles{
+    <style>
+        /* Users Table */
+        .users-table {
+            background-color: var(--light-text);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 10px;
+        }
+
+            .table thead th {
+                border: none;
+                color: #777;
+                font-weight: 500;
+                padding: 12px 15px;
+                text-transform: uppercase;
+                font-size: 0.8rem;
+            }
+
+            .table tbody tr {
+                background-color: var(--light-bg);
+                border-radius: 10px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+                transition: all 0.3s ease;
+            }
+
+                .table tbody tr:hover {
+                    transform: translateY(-3px);
+                    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                }
+
+            .table tbody td {
+                border: none;
+                padding: 15px;
+                vertical-align: middle;
+            }
+
+                .table tbody td:first-child {
+                    border-top-left-radius: 10px;
+                    border-bottom-left-radius: 10px;
+                }
+
+                .table tbody td:last-child {
+                    border-top-right-radius: 10px;
+                    border-bottom-right-radius: 10px;
+                }
+
+        .user-info-table {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+
+        .user-name-table {
+            font-weight: 600;
+            color: var(--dark-text);
+            margin-bottom: 5px;
+        }
+
+        .user-email {
+            font-size: 0.8rem;
+            color: #777;
+        }
+
+        .user-role-badge {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-align: center;
+            display: inline-block;
+        }
+
+        .role-admin {
+            background-color: rgba(228, 2, 100, 0.1);
+            color: var(--primary-color);
+        }
+
+        .role-user {
+            background-color: rgba(0, 184, 212, 0.1);
+            color: var(--secondary-color);
+        }
+
+        .user-status {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-align: center;
+            display: inline-block;
+        }
+
+        .status-active {
+            background-color: rgba(76, 175, 80, 0.1);
+            color: #4caf50;
+        }
+
+        .status-inactive {
+            background-color: rgba(158, 158, 158, 0.1);
+            color: #9e9e9e;
+        }
+
+        .status-blocked {
+            background-color: rgba(244, 67, 54, 0.1);
+            color: #f44336;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-action {
+            width: 35px;
+            height: 35px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light-text);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-view {
+            background-color: var(--secondary-color);
+        }
+
+        .btn-edit {
+            background-color: #ff9800;
+        }
+
+        .btn-delete {
+            background-color: #f44336;
+        }
+
+        .btn-action:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Pagination */
+        .pagination-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .pagination-info {
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        .pagination {
+            display: flex;
+            gap: 5px;
+        }
+
+        .page-item {
+            list-style: none;
+        }
+
+        .page-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            border-radius: 8px;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+            .page-link:hover, .page-link.active {
+                background-color: var(--primary-color);
+                color: var(--light-text);
+            }
+
+            .page-link.disabled {
+                opacity: 0.5;
+                cursor: not-allowed;
+            }
+
+        /* Modal */
+        .modal-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+            .modal-backdrop.show {
+                opacity: 1;
+                visibility: visible;
+            }
+
+        .modal-content {
+            background-color: var(--light-text);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            width: 100%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: translateY(-20px);
+            transition: all 0.3s ease;
+        }
+
+        .modal-backdrop.show .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            color: var(--dark-text);
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #777;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+            .modal-close:hover {
+                color: var(--primary-color);
+            }
+
+        .modal-body {
+            padding: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            transition: all 0.3s ease;
+        }
+
+            .form-control:focus {
+                border-color: var(--primary-color);
+                box-shadow: 0 0 0 3px rgba(228, 2, 100, 0.1);
+                outline: none;
+            }
+
+        .form-check {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .form-check-input {
+            margin-right: 10px;
+        }
+
+        .avatar-upload {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+            .avatar-upload:hover {
+                border-color: var(--primary-color);
+            }
+
+            .avatar-upload i {
+                font-size: 2rem;
+                color: #777;
+                margin-bottom: 10px;
+            }
+
+        .avatar-upload-text {
+            color: #777;
+            margin-bottom: 10px;
+        }
+
+        .avatar-upload-hint {
+            font-size: 0.8rem;
+            color: #999;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            padding: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .btn-cancel {
+            background-color: #f1f1f1;
+            color: var(--dark-text);
+            border: none;
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-save {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #c4008b 100%);
+            color: var(--light-text);
+            border: none;
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+            .btn-cancel:hover, .btn-save:hover {
+                transform: translateY(-2px);
+            }
+
+        /* Responsive */
+        @@media (max-width: 992px) {
+            .filter-row
+
+        {
+            flex-direction: column;
+        }
+
+        .filter-item, .search-box {
+            min-width: 100%;
+        }
+
+        }
+
+        @@media (max-width: 768px) {
+            .sidebar
+
+        {
+            transform: translateX(-100%);
+        }
+
+        .sidebar.active {
+            transform: translateX(0);
+        }
+
+        .main-content {
+            margin-left: 0;
+        }
+
+        .page-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .action-buttons {
+            flex-wrap: wrap;
+        }
+
+        }
+
+        /* Animation classes */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .slide-up {
+            animation: slideUp 0.5s ease-in-out;
+        }
+
+        @@keyframes fadeIn {
+            from
+
+        {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+
+        }
+
+        @@keyframes slideUp {
+            from
+
+        {
+            transform: translateY(20px);
+            opacity: 0;
+        }
+
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        }
+    </style>
+}
+<div class="users-content">
+    <div class="page-header fade-in">
+        <h1 class="page-title">Users Management</h1>
+        <a asp-action="Create" class="btn-add">
+            <i class="fas fa-user-plus"></i> Add New User
+        </a>
+    </div>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">@TempData["Success"]</div>
+    }
+
+    <div class="users-table slide-up">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>User</th>
+                        <th>Age & Gender</th>
+                        <th>Role</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <div class="user-info-table">
+                                    <img src="@(item.ImageUrl ?? "/images/users/default-avatar.png")" alt="User" class="user-avatar">
+                                    <div>
+                                        <div class="user-name-table">@(item.FirstName + " " + item.LastName)</div>
+                                        <div class="user-email">@item.Email</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>@item.Age, @item.Gender</td>
+                            <td>
+                                <span class="user-role-badge @(item.Role?.Name == "Admin" ? "role-admin" : "role-user")">
+                                    @item.Role?.Name
+                                </span>
+                            </td>
+                            <td>
+                                <div class="action-buttons">
+                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn-action btn-view"><i class="fas fa-eye"></i></a>
+                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn-action btn-edit"><i class="fas fa-edit"></i></a>
+                                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn-action btn-delete"><i class="fas fa-trash"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+ @section Scripts {
+        <script>
+            // Toggle sidebar on mobile
+            document.querySelector('.toggle-sidebar').addEventListener('click', function() {
+              document.querySelector('.sidebar').classList.toggle('active');
+              document.querySelector('.main-content').classList.toggle('full-width');
+            });
+
+            // Add User Modal
+            function openAddUserModal() {
+              document.getElementById('addUserModal').classList.add('show');
+            }
+
+            function closeAddUserModal() {
+              document.getElementById('addUserModal').classList.remove('show');
+            }
+
+            // View User Modal
+            function openViewUserModal() {
+              document.getElementById('viewUserModal').classList.add('show');
+            }
+
+            function closeViewUserModal() {
+              document.getElementById('viewUserModal').classList.remove('show');
+            }
+
+            // Edit User Modal
+            function openEditUserModal() {
+              document.getElementById('editUserModal').classList.add('show');
+            }
+
+            function closeEditUserModal() {
+              document.getElementById('editUserModal').classList.remove('show');
+            }
+
+            // Add animation classes when page loads
+            document.addEventListener('DOMContentLoaded', function() {
+              const fadeElements = document.querySelectorAll('.fade-in');
+              const slideElements = document.querySelectorAll('.slide-up');
+
+              fadeElements.forEach(element => {
+                element.style.opacity = '0';
+                setTimeout(() => {
+                  element.style.opacity = '1';
+                }, 100);
+              });
+
+              slideElements.forEach((element, index) => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                  element.style.opacity = '1';
+                  element.style.transform = 'translateY(0)';
+                }, 100 + (index * 100));
+              });
+            });
+        </script>
+}

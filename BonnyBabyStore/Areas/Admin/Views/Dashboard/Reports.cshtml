@@ -1,0 +1,114 @@
+﻿@{
+    ViewData["Title"] = "Reports";
+    Layout = "_AdminLayout";
+}
+
+@section Styles {
+    <style>
+        .reports-content {
+            padding: 30px;
+        }
+
+        .reports-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+
+        .reports-title {
+            font-size: 1.8rem;
+            color: var(--dark-text, #222);
+            font-weight: 700;
+        }
+
+        .stats-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, var(--primary-color, #e40264) 0%, #c4008b 100%);
+            color: var(--light-text, #fff);
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(228, 2, 100, 0.08);
+            padding: 32px 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            position: relative;
+            overflow: hidden;
+            min-height: 140px;
+        }
+
+        .stat-icon {
+            font-size: 2.2rem;
+            opacity: 0.18;
+            position: absolute;
+            top: 18px;
+            right: 18px;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        @@media (max-width: 600px) {
+            .reports-content
+
+        {
+            padding: 10px;
+        }
+
+        .stats-cards {
+            grid-template-columns: 1fr;
+        }
+
+        }
+    </style>
+}
+
+<div class="reports-content">
+    <div class="reports-header fade-in">
+        <h1 class="reports-title"><i class="fas fa-chart-bar me-2"></i>Reports & Analytics</h1>
+    </div>
+
+    <div class="stats-cards">
+        <div class="stat-card">
+            <span class="stat-label">Total Users</span>
+            <span class="stat-value">@ViewBag.TotalUsers</span>
+            <i class="fas fa-users stat-icon"></i>
+        </div>
+        <div class="stat-card">
+            <span class="stat-label">Total Products</span>
+            <span class="stat-value">@ViewBag.TotalProducts</span>
+            <i class="fas fa-box-open stat-icon"></i>
+        </div>
+        <div class="stat-card">
+            <span class="stat-label">Total Categories</span>
+            <span class="stat-value">@ViewBag.TotalCategories</span>
+            <i class="fas fa-tags stat-icon"></i>
+        </div>
+   
+    </div>
+
+    <div>
+        <h4 class="mb-3" style="color:var(--primary-color,#e40264);font-weight:600;">Quick Insights</h4>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><i class="fas fa-user-check me-2 text-success"></i> Most Active User: <strong>--</strong></li>
+            <li class="list-group-item"><i class="fas fa-star me-2 text-warning"></i> Top Product: <strong>--</strong></li>
+            <li class="list-group-item"><i class="fas fa-shopping-cart me-2 text-info"></i> Orders This Month: <strong>--</strong></li>
+    
+        </ul>
+    </div>
+</div>

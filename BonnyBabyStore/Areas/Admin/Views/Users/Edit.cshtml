@@ -1,0 +1,48 @@
+﻿@model BonnyBabyStore.Models.User
+
+@{
+    ViewData["Title"] = "Edit User";
+    Layout = "_AdminLayout";
+}
+
+<div class="page-header"><h1 class="page-title">Edit User: @Model.FirstName @Model.LastName</h1></div>
+<div class="form-card" style="background-color: white; padding: 30px; border-radius: 15px;">
+    <form asp-action="Edit" method="post" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="PasswordHash" />
+
+        <div class="row">
+            <div class="col-md-4 mb-3 text-center">
+                <label class="form-label fw-bold">Current Avatar</label>
+                <div>
+                    <img src="@(Model.ImageUrl ?? "/images/users/default-avatar.png")" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover;" alt="User Avatar" />
+                </div>
+                <label class="form-label fw-bold mt-3">Change Avatar</label>
+                <input name="imageFile" type="file" class="form-control" accept="image/*" />
+            </div>
+
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-6 mb-3"><label class="form-label fw-bold">User Name</label><input asp-for="UserName" class="form-control" /></div>
+                    <div class="col-md-6 mb-3"><label class="form-label fw-bold">Email</label><input asp-for="Email" class="form-control" type="email" /></div>
+                    <div class="col-md-6 mb-3"><label class="form-label fw-bold">First Name</label><input asp-for="FirstName" class="form-control" /></div>
+                    <div class="col-md-6 mb-3"><label class="form-label fw-bold">Last Name</label><input asp-for="LastName" class="form-control" /></div>
+                    <div class="col-md-12 mb-3">
+                        <label class="form-label fw-bold">New Password</label>
+                        <input name="newPassword" type="password" class="form-control" placeholder="Leave blank to keep current password" />
+                    </div>
+                    <div class="col-md-4 mb-3"><label class="form-label fw-bold">Age</label><input asp-for="Age" class="form-control" type="number" /></div>
+                    <div class="col-md-4 mb-3"><label class="form-label fw-bold">Gender</label><input asp-for="Gender" class="form-control" /></div>
+                    <div class="col-md-4 mb-3"><label class="form-label fw-bold">Role</label><select asp-for="RoleId" class="form-control" asp-items="@ViewBag.Roles"></select></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-4 text-center">
+            <button type="submit" class="btn-add">Save Changes</button>
+            <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>

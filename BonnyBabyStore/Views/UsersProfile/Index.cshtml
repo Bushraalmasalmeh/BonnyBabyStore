@@ -1,0 +1,166 @@
+﻿}@{
+ViewData["Title"] = "User Profile";
+}
+
+@{
+    ViewData["Title"] = "User Profile";
+}
+<section class="profile-container container">
+    <div class="row">
+        <!-- Profile Sidebar -->
+        <div class="col-lg-3 mb-4">
+            <div class="profile-sidebar">
+                @* 
+                    User avatar and name (dynamic, image optional) 
+                    - If the user has uploaded a profile image, it will be displayed.
+                    - If not, a default avatar image is shown.
+                    - The image path is stored in the database as User.ImageUrl.
+                *@
+                <img src="@(string.IsNullOrEmpty(Model.ImageUrl) ? Url.Content("~/images/Avatar.png") : Url.Content(Model.ImageUrl))" alt="User Avatar" class="profile-avatar" />
+                <h4 class="profile-name">@($"{Model.FirstName} {Model.LastName}")</h4>
+                <ul class="profile-menu">
+                    <li class="profile-menu-item">
+                        <a href="#personal-info" class="profile-menu-link active" data-bs-toggle="tab" data-bs-target="#personal-info">
+                            <i class="fas fa-user me-2"></i> Personal Information
+                        </a>
+                    </li>
+                    <li class="profile-menu-item">
+                        <a href="#orders" class="profile-menu-link" data-bs-toggle="tab" data-bs-target="#orders">
+                            <i class="fas fa-shopping-bag me-2"></i> My Orders
+                        </a>
+                    </li>
+                    <li class="profile-menu-item">
+                        <a href="#addresses" class="profile-menu-link" data-bs-toggle="tab" data-bs-target="#addresses">
+                            <i class="fas fa-map-marker-alt me-2"></i> My Addresses
+                        </a>
+                    </li>
+                    <li class="profile-menu-item">
+                        <a href="#wishlist" class="profile-menu-link" data-bs-toggle="tab" data-bs-target="#wishlist">
+                            <i class="fas fa-heart me-2"></i> Wishlist
+                        </a>
+                    </li>
+                    <li class="profile-menu-item">
+                        <a href="#change-password" class="profile-menu-link" data-bs-toggle="tab" data-bs-target="#change-password">
+                            <i class="fas fa-lock me-2"></i> Change Password
+                        </a>
+                    </li>
+                    <li class="profile-menu-item">
+                        <form asp-controller="Accounts" asp-action="Logout" method="post" style="display:inline;">
+                            <button type="submit" class="profile-menu-link btn btn-link p-0" style="color:inherit;text-align:left;">
+                                <i class="fas fa-sign-out-alt me-2"></i> Logout
+                            </button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Profile Content -->
+        <div class="col-lg-9">
+            <div class="profile-content tab-content">
+                <!-- Personal Information Tab -->
+                <div class="tab-pane fade show active" id="personal-info">
+                    <h3 class="profile-section-title">Personal Information</h3>
+                    @* 
+                        Form for editing personal info.
+                        - Allows editing first name, last name, age, gender.
+                        - Email is read-only.
+                        - User can optionally upload a profile image (not required).
+                        - If no image is uploaded, the previous or default image is used.
+                        - The form uses enctype="multipart/form-data" to support file upload.
+                        - The uploaded image will be saved to the /images directory and the path stored in the database.
+                    *@
+                    <form asp-action="EditProfile" asp-controller="UsersProfile" method="post" enctype="multipart/form-data" class="profile-form">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="firstName" class="form-label">First Name</label>
+                                    <input type="text" class="form-control" id="firstName" name="FirstName" value="@Model.FirstName" required />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="lastName" class="form-label">Last Name</label>
+                                    <input type="text" class="form-control" id="lastName" name="LastName" value="@Model.LastName" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" class="form-control" id="email" name="Email" value="@Model.Email" readonly />
+                        </div>
+                        <div class="mb-3">
+                            <label for="age" class="form-label">Age</label>
+                            <input type="number" class="form-control" id="age" name="Age" value="@Model.Age" min="18" max="100" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="gender" class="form-label">Gender</label>
+                            <select class="form-control" id="gender" name="Gender">
+                                <option value="">Select</option>
+                                <option value="Male" @@(Model.Gender == "Male" ? "selected" : null)>Male</option>
+                                <option value="Female" @@(Model.Gender == "Female" ? "selected" : null)>Female</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            @* 
+                                Profile Image Upload (optional)
+                                - Allows the user to upload a new profile image.
+                                - If no image is uploaded, the current image remains unchanged.
+                                - The uploaded image will be saved to the /images directory.
+                                - The image path will be stored in the database as User.ImageUrl.
+                            *@
+                            <label for="ImageFile" class="form-label">Profile Image (optional)</label>
+                            <input type="file" class="form-control" id="ImageFile" name="ImageFile" accept="image/*" />
+                            <small class="form-text text-muted">Leave empty to keep your current image.</small>
+                        </div>
+                        <button type="submit" class="profile-save-btn">Save Changes</button>
+                    </form>
+                </div>
+
+                <!-- Orders Tab -->
+                <div class="tab-pane fade" id="orders">
+                    <h3 class="profile-section-title">My Orders</h3>
+                    @* TODO: Replace with dynamic orders from the database *@
+                    <div class="alert alert-info">You have no orders yet.</div>
+                </div>
+
+                <!-- Addresses Tab -->
+                <div class="tab-pane fade" id="addresses">
+                    <h3 class="profile-section-title">My Addresses</h3>
+                    @* TODO: Replace with dynamic addresses from the database *@
+                    <div class="alert alert-info">No addresses found.</div>
+                    <button class="btn btn-primary mt-2">
+                        <i class="fas fa-plus me-2"></i> Add New Address
+                    </button>
+                </div>
+
+                <!-- Wishlist Tab -->
+                <div class="tab-pane fade" id="wishlist">
+                    <h3 class="profile-section-title">My Wishlist</h3>
+                    @* TODO: Replace with dynamic wishlist items from the database *@
+                    <div class="alert alert-info">Your wishlist is empty.</div>
+                </div>
+
+                <!-- Change Password Tab -->
+                <div class="tab-pane fade" id="change-password">
+                    <h3 class="profile-section-title">Change Password</h3>
+                    <form asp-action="ChangePassword" asp-controller="UsersProfile" method="post" class="profile-form">
+                        <div class="mb-3">
+                            <label for="currentPassword" class="form-label">Current Password</label>
+                            <input type="password" class="form-control" id="currentPassword" name="CurrentPassword" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="newPassword" class="form-label">New Password</label>
+                            <input type="password" class="form-control" id="newPassword" name="NewPassword" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="confirmPassword" class="form-label">Confirm New Password</label>
+                            <input type="password" class="form-control" id="confirmPassword" name="ConfirmPassword" required />
+                        </div>
+                        <button type="submit" class="profile-save-btn">Update Password</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

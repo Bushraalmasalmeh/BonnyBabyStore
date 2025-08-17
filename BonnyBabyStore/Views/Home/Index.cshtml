@@ -1,0 +1,1070 @@
+﻿@section Styles {
+
+<style>
+    /* Additional Home Page Styles */
+    .hero {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .hero-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    .hero-overlay {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(5px);
+      border: none;
+      box-shadow: 0 15px 30px rgba(228, 2, 100, 0.2);
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    .scroll-down {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      animation: bounce 2s infinite;
+      text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      z-index: 10;
+    }
+
+    @@keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0) translateX(-50%);
+      }
+      40% {
+        transform: translateY(-20px) translateX(-50%);
+      }
+      60% {
+        transform: translateY(-10px) translateX(-50%);
+      }
+    }
+
+    .featured-product {
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transition: all 0.5s ease;
+      height: 100%;
+    }
+
+    .featured-product:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 20px 40px rgba(228, 2, 100, 0.3);
+    }
+
+    .featured-product img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: all 0.5s ease;
+    }
+
+    .featured-product:hover img {
+      transform: scale(1.1);
+    }
+
+    .featured-product-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 20px;
+      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+      color: white;
+    }
+
+    .featured-product-content h3 {
+      font-family: 'Caveat';
+      font-size: 2rem;
+      margin-bottom: 10px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .featured-product-content p {
+      margin-bottom: 15px;
+      font-weight: 500;
+    }
+
+    .featured-product-content .btn {
+      font-weight: 600;
+      padding: 8px 20px;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      border: none;
+    }
+
+    .featured-product-content .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(255,255,255,0.3);
+    }
+
+    .testimonial-card {
+      background-color: white;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      transition: all 0.5s ease;
+      height: 100%;
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(228, 2, 100, 0.2);
+    }
+
+    .testimonial-img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--primary-color);
+    }
+
+    .quote-icon {
+      font-size: 3rem;
+      color: rgba(228, 2, 100, 0.1);
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+
+    .category-banner {
+      height: 300px;
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      margin-bottom: 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .category-banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: all 0.5s ease;
+    }
+
+    .category-banner:hover img {
+      transform: scale(1.1);
+    }
+
+    .category-banner-content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.4);
+      color: white;
+      transition: all 0.5s ease;
+    }
+
+    .category-banner:hover .category-banner-content {
+      background: rgba(228, 2, 100, 0.6);
+    }
+
+    .category-banner-content h3 {
+      font-family: 'Caveat';
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    }
+
+    .newsletter-section {
+      background: linear-gradient(135deg, #ffcce0, #e40264);
+      border-radius: 20px;
+      padding: 50px;
+      box-shadow: 0 10px 30px rgba(228, 2, 100, 0.2);
+    }
+
+    .newsletter-form {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .newsletter-input {
+      border-radius: 50px;
+      padding: 15px 25px;
+      border: none;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .newsletter-btn {
+      border-radius: 50px;
+      padding: 15px 30px;
+      background-color: var(--secondary-color);
+      border: none;
+      color: white;
+      font-weight: 600;
+      box-shadow: 0 5px 15px rgba(4, 161, 168, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .newsletter-btn:hover {
+      background-color: #038e95;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(4, 161, 168, 0.5);
+    }
+
+    .brand-section {
+      padding: 50px 0;
+    }
+
+    .brand-logo {
+      height: 60px;
+      object-fit: contain;
+      filter: grayscale(100%);
+      opacity: 0.6;
+      transition: all 0.5s ease;
+    }
+
+    .brand-logo:hover {
+      filter: grayscale(0%);
+      opacity: 1;
+      transform: scale(1.1);
+    }
+
+    .section-divider {
+      height: 100px;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffcce0" fill-opacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,149.3C960,160,1056,160,1152,138.7C1248,117,1344,75,1392,53.3L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+      background-size: cover;
+      background-position: center;
+      margin-top: -50px;
+      margin-bottom: -50px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-divider.flip {
+      transform: rotate(180deg);
+    }
+
+    .feature-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background-color: rgba(228, 2, 100, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 2rem;
+      color: var(--primary-color);
+      transition: all 0.5s ease;
+    }
+
+    .feature-card:hover .feature-icon {
+      background-color: var(--primary-color);
+      color: white;
+      transform: rotateY(360deg);
+    }
+
+    .feature-card {
+      padding: 30px;
+      border-radius: 20px;
+      background-color: white;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      transition: all 0.5s ease;
+      height: 100%;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(228, 2, 100, 0.2);
+    }
+
+    .instagram-feed {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 10px;
+      margin-top: 30px;
+    }
+
+    .instagram-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      aspect-ratio: 1;
+    }
+
+    .instagram-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: all 0.5s ease;
+    }
+
+    .instagram-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .instagram-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(228, 2, 100, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: all 0.5s ease;
+    }
+
+    .instagram-item:hover .instagram-overlay {
+      opacity: 1;
+    }
+
+    .instagram-icon {
+      color: white;
+      font-size: 2rem;
+    }
+
+    /* Enhanced Hero Section */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.1));
+      z-index: -1;
+    }
+
+    .hero-content h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+      color: var(--primary-color);
+      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .hero-content p {
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+      color: var(--secondary-color);
+      font-weight: 500;
+    }
+
+    .btn-main {
+      padding: 12px 30px;
+      font-size: 1.2rem;
+      box-shadow: 0 10px 20px rgba(228, 2, 100, 0.3);
+    }
+
+    .btn-main:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(228, 2, 100, 0.5);
+    }
+
+    /* Enhanced Featured Products */
+    .featured-products-container {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .featured-products-container::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      left: -50px;
+      width: 200px;
+      height: 200px;
+      background-color: rgba(228, 2, 100, 0.1);
+      border-radius: 50%;
+      z-index: -1;
+    }
+
+    .featured-products-container::after {
+      content: '';
+      position: absolute;
+      bottom: -50px;
+      right: -50px;
+      width: 200px;
+      height: 200px;
+      background-color: rgba(4, 161, 168, 0.1);
+      border-radius: 50%;
+      z-index: -1;
+    }
+
+    .featured-product-large {
+      height: 500px;
+    }
+
+    .featured-product-small {
+      height: 240px;
+    }
+
+    /* Enhanced About Section */
+    .about-section {
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      background-color: #ffeffa;
+      padding: 50px;
+      box-shadow: 0 10px 30px rgba(228, 2, 100, 0.1);
+    }
+
+    .about-section::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 300px;
+      height: 300px;
+      background-color: rgba(228, 2, 100, 0.05);
+      border-radius: 50%;
+      z-index: 0;
+    }
+
+    .about-section p {
+      position: relative;
+      z-index: 1;
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    /* Enhanced Contact Section */
+    .contact-form-container {
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-form {
+      padding: 30px;
+      background-color: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(228, 2, 100, 0.1);
+    }
+
+    .contact-form .form-control {
+      border-radius: 10px;
+      padding: 12px;
+      border: 1px solid #eee;
+      transition: all 0.3s ease;
+      margin-bottom: 20px;
+    }
+
+    .contact-form .form-control:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 10px rgba(228, 2, 100, 0.2);
+    }
+
+    .contact-info {
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(228, 2, 100, 0.1);
+      padding: 30px !important;
+    }
+
+     .contact-info i { 
+       width: 40px; 
+       height: 40px; 
+       display: flex; 
+      align-items: center; 
+       justify-content: center; 
+      background-color: rgba(228, 2, 100, 0.1); 
+     border-radius: 50%; 
+       margin-right: 15px !important;    } 
+
+    /* .contact-info a { */
+    /*   width: 40px; */
+    /*   height: 40px; */
+    /*   display: inline-flex; */
+    /*   align-items: center; */
+    /*   justify-content: center; */
+    /*   background-color: rgba(228, 2, 100, 0.1); */
+    /*   border-radius: 50%; */
+    /*   margin-right: 10px; */
+    /*   transition: all 0.3s ease; */
+    /* } */
+
+
+
+    /* Simple Footer */
+    .custom-footer {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 15px 0;
+      text-align: center;
+    }
+
+    /* Responsive Adjustments */
+    @@media (max-width: 992px) {
+      .instagram-feed {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .featured-product-large {
+        height: 400px;
+      }
+
+      .featured-product-small {
+        height: 200px;
+      }
+    }
+
+    @@media (max-width: 768px) {
+      .hero-content h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero-content p {
+        font-size: 1.2rem;
+      }
+
+      .featured-product-large {
+        height: 350px;
+        margin-bottom: 20px;
+      }
+    }
+
+    @@media (max-width: 576px) {
+      .instagram-feed {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero-overlay {
+        width: 90%;
+        padding: 30px 20px;
+      }
+
+      .newsletter-section {
+        padding: 30px 20px;
+      }
+
+      .featured-product-large,
+      .featured-product-small {
+        height: 250px;
+        margin-bottom: 20px;
+      }
+      /* Contact Section Color Fixes */
+#contact .section-title,
+#contact h3,
+#contact label,
+#contact .form-label,
+#contact .fw-bold,
+#contact .fw-semibold {
+    color: #e40264 !important; /* الوردي الأساسي */
+}
+
+#contact .contact-info i {
+    background-color: rgba(228, 2, 100, 0.12) !important;
+    color: #e40264 !important;
+}
+
+#contact .contact-info .fw-bold,
+#contact .contact-info h5 {
+    color: #e40264 !important;
+}
+
+#contact .contact-info .text-primary {
+    color: #e40264 !important;
+}
+
+#contact .contact-info .social-icons a {
+    background-color: rgba(228, 2, 100, 0.12) !important;
+    color: #e40264 !important;
+}
+
+#contact .contact-info .social-icons a:hover {
+    background-color: #e40264 !important;
+    color: #fff !important;
+}
+
+#contact .contact-form .btn-primary {
+    background: linear-gradient(135deg, #e40264 0%, #c4008b 100%) !important;
+    border: none !important;
+    color: #fff !important;
+    font-weight: 600;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px rgba(228, 2, 100, 0.15);
+    transition: all 0.3s ease;
+}
+#contact .contact-form .btn-primary:hover {
+    background: linear-gradient(135deg, #c4008b 0%, #e40264 100%) !important;
+    color: #fff !important;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(228, 2, 100, 0.25);
+}
+
+    }
+        /* Contact Section Color Fixes */
+        #contact .section-title,
+        #contact h3,
+        #contact label,
+        #contact .form-label,
+        #contact .fw-bold,
+        #contact .fw-semibold {
+            color: #e40264 !important; /* الوردي الأساسي */
+        }
+
+        #contact .contact-info i {
+            background-color: rgba(228, 2, 100, 0.12) !important;
+            color: #e40264 !important;
+        }
+
+        #contact .contact-info .fw-bold,
+        #contact .contact-info h5 {
+            color: #e40264 !important;
+        }
+
+        #contact .contact-info .text-primary {
+            color: #e40264 !important;
+        }
+
+        #contact .contact-info .social-icons a {
+            background-color: rgba(228, 2, 100, 0.12) !important;
+            color: #e40264 !important;
+        }
+
+            #contact .contact-info .social-icons a:hover {
+                background-color: #e40264 !important;
+                color: #fff !important;
+            }
+
+        #contact .contact-form .btn-primary {
+            background: linear-gradient(135deg, #e40264 0%, #c4008b 100%) !important;
+            border: none !important;
+            color: #fff !important;
+            font-weight: 600;
+            border-radius: 30px;
+            box-shadow: 0 5px 15px rgba(228, 2, 100, 0.15);
+            transition: all 0.3s ease;
+        }
+
+            #contact .contact-form .btn-primary:hover {
+                background: linear-gradient(135deg, #c4008b 0%, #e40264 100%) !important;
+                color: #fff !important;
+                transform: translateY(-3px);
+                box-shadow: 0 8px 20px rgba(228, 2, 100, 0.25);
+            }
+
+        #contact .contact-info .social-icons {
+            display: flex;
+            gap: 14px;
+            margin-top: 10px;
+        }
+
+            #contact .contact-info .social-icons a {
+                width: 44px;
+                height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                background: rgba(228, 2, 100, 0.12);
+                transition: background 0.3s;
+                box-shadow: none;
+                padding: 0;
+                margin: 0;
+                font-size: 1.5rem;
+            }
+
+                #contact .contact-info .social-icons a i {
+                    font-size: 1.3rem;
+                    color: #e40264;
+                    transition: color 0.3s;
+                    margin: 0;
+                    padding: 0;
+                    line-height: 1;
+                }
+
+                #contact .contact-info .social-icons a[href*="facebook"] i {
+                    color: #1877f3;
+                }
+
+                #contact .contact-info .social-icons a[href*="instagram"] i {
+                    color: #e1306c;
+                }
+
+                #contact .contact-info .social-icons a:hover {
+                    background: #e40264;
+                }
+
+                #contact .contact-info .social-icons a[href*="facebook"]:hover {
+                    background: #1877f3;
+                }
+
+                #contact .contact-info .social-icons a[href*="instagram"]:hover {
+                    background: #e1306c;
+                }
+
+                #contact .contact-info .social-icons a:hover i {
+                    color: #fff !important;
+                }
+
+</style>
+
+}
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<section class="hero" style="background-image: url('/images/babyy.png'); background-size: cover; background-position: center; height: 100vh; position: relative;">
+    <div class="hero-overlay" style="position: relative; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(255, 255, 255, 0.4);">
+        <div class="hero-content" style="position: relative; color: white; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 5%; max-width: 800px; margin: 0 auto;">
+            <h1 data-aos="fade-down" data-aos-duration="600">Welcome to Bonny Baby</h1>
+            <p data-aos="fade-up" data-aos-duration="600" data-aos-delay="200">Discover the perfect products for your little ones</p>
+            <a asp-controller="Categories" asp-action="Index" class="btn-main" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="300">Shop Now</a>
+        </div>
+    </div>
+    <a href="#featured" class="scroll-down">
+        <i class="fas fa-chevron-down"></i>
+    </a>
+</section>
+
+<section id="featured" class="py-5">
+    <div class="container featured-products-container">
+        <h2 class="section-title" data-aos="fade-up" data-aos-duration="600">Featured Products</h2>
+        <div class="row">
+            <div class="col-md-6 mb-4" data-aos="fade-right" data-aos-duration="600">
+                <div class="featured-product featured-product-large">
+                    <img src="~/images/IMG_7691.JPG" alt="Featured Product">
+                    <div class="featured-product-content">
+                        <h3>New Collection</h3>
+                        <p>Discover our latest baby shoes collection</p>
+                        <a asp-controller="Categories" asp-action="Index" class="btn btn-light">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6" data-aos="fade-left" data-aos-duration="600" data-aos-delay="200">
+                <div class="row">
+                    <div class="col-12 mb-4">
+                        <div class="featured-product featured-product-small">
+                            <img src="~/images/IMG_7644.JPG" alt="Featured Product">
+                            <div class="featured-product-content">
+                                <h3>Summer Essentials</h3>
+                                <p>Light and comfortable clothes for summer</p>
+                                <a asp-controller="Categories" asp-action="Index" class="btn btn-light">Shop Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="featured-product featured-product-small">
+                            <img src="~/images/IMG_7652.JPG" alt="Featured Product">
+                            <div class="featured-product-content">
+                                <h3>Accessories</h3>
+                                <p>Cute accessories for your baby</p>
+                                <a asp-controller="Categories" asp-action="Index" class="btn btn-light">Shop Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="section-title" data-aos="fade-up" data-aos-duration="600">Shop by Category</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4" data-aos="zoom-in" data-aos-duration="600">
+                <div class="category-banner">
+                    <img src="~/images/IMG_7696.JPG" alt="Clothing">
+                    <div class="category-banner-content">
+                        <h3>Clothing</h3>
+                        <a asp-controller="Categories" asp-action="Index" class="btn btn-outline-light">View All</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="200">
+                <div class="category-banner">
+                    <img src="~/images/IMG_7674.JPG" alt="Accessories">
+                    <div class="category-banner-content">
+                        <h3>Accessories</h3>
+                        <a asp-controller="Categories" asp-action="Index" class="btn btn-outline-light">View All</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="400">
+                <div class="category-banner">
+                    <img src="~/images/IMG_7669.JPG" alt="Toys">
+                    <div class="category-banner-content">
+                        <h3>Toys</h3>
+                        <a asp-controller="Categories" asp-action="Index" class="btn btn-outline-light">View All</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="about" class="py-5">
+    <div class="container">
+        <h2 class="section-title" data-aos="fade-up" data-aos-duration="600">About Us</h2>
+        <div class="about-section" data-aos="fade-up" data-aos-duration="600" data-aos-delay="200">
+            <p>
+                Welcome to Bonny Baby, where we believe every child deserves the best start in life. Our journey began in 2020 with a simple mission: to provide high-quality, comfortable, and adorable products for your little ones.
+            </p>
+            <p>
+                We carefully select each item in our collection, ensuring they meet our strict standards for quality, safety, and style. From soft cotton clothing to educational toys, we offer everything your baby needs for a happy and healthy childhood.
+            </p>
+            <p>
+                At Bonny Baby, we're more than just a store – we're a community of parents and caregivers who understand the joys and challenges of raising children. We're here to support you on this beautiful journey of parenthood.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <h2 class="section-title" data-aos="fade-up" data-aos-duration="600">Why Choose Us</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-duration="600">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3 class="text-center mb-3">Quality Assurance</h3>
+                    <p class="text-center">All our products undergo rigorous quality checks to ensure safety and durability for your little ones.</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-duration="600" data-aos-delay="200">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3 class="text-center mb-3">Fast Delivery</h3>
+                    <p class="text-center">We offer quick and reliable shipping to ensure your baby's essentials arrive when you need them.</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-duration="600" data-aos-delay="400">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <h3 class="text-center mb-3">Easy Returns</h3>
+                    <p class="text-center">Not satisfied? Our hassle-free return policy ensures you're always happy with your purchase.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="section-title" data-aos="fade-up" data-aos-duration="600">What Parents Say</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-duration="600">
+                <div class="testimonial-card position-relative">
+                    <i class="fas fa-quote-right quote-icon"></i>
+                    <div class="d-flex align-items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Testimonial" class="testimonial-img me-3">
+                        <div>
+                            <h5 class="mb-0">Sarah Johnson</h5>
+                            <small class="text-muted">Mother of two</small>
+                        </div>
+                    </div>
+                    <p>"The quality of clothes I received from Bonny Baby is exceptional. My twins love their new outfits, and they've held up well after multiple washes."</p>
+                    <div class="text-warning">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-duration="600" data-aos-delay="200">
+                <div class="testimonial-card position-relative">
+                    <i class="fas fa-quote-right quote-icon"></i>
+                    <div class="d-flex align-items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Testimonial" class="testimonial-img me-3">
+                        <div>
+                            <h5 class="mb-0">Michael Brown</h5>
+                            <small class="text-muted">Father of one</small>
+                        </div>
+                    </div>
+                    <p>"Fast shipping and excellent customer service! When I had questions about sizing, the team was quick to respond and very helpful."</p>
+                    <div class="text-warning">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-duration="600" data-aos-delay="400">
+                <div class="testimonial-card position-relative">
+                    <i class="fas fa-quote-right quote-icon"></i>
+                    <div class="d-flex align-items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Testimonial" class="testimonial-img me-3">
+                        <div>
+                            <h5 class="mb-0">Emily Davis</h5>
+                            <small class="text-muted">New mom</small>
+                        </div>
+                    </div>
+                    <p>"As a first-time mom, I was overwhelmed with choices. Bonny Baby made it easy to find everything I needed for my newborn. Will definitely shop here again!"</p>
+                    <div class="text-warning">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <div class="newsletter-section" data-aos="fade-up" data-aos-duration="600">
+            <h2 class="text-center text-white mb-4">Join Our Newsletter</h2>
+            <p class="text-center text-white mb-4">Subscribe to receive updates on new arrivals, special offers, and parenting tips.</p>
+            <form class="newsletter-form">
+                <div class="input-group mb-3">
+                    <input type="email" class="form-control newsletter-input" placeholder="Your email address" aria-label="Email address">
+                    <button class="btn newsletter-btn" type="submit">Subscribe</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <h2 class="section-title" data-aos="fade-up" data-aos-duration="600">Follow Us on Instagram</h2>
+        <p class="text-center mb-4" data-aos="fade-up" data-aos-duration="600" data-aos-delay="200">@@bonnybaby_official</p>
+        <div class="instagram-feed" data-aos="fade-up" data-aos-duration="600" data-aos-delay="300">
+            <div class="instagram-item">
+                <img src="~/images/IMG_7641.JPG" alt="Instagram Post">
+                <div class="instagram-overlay">
+                    <i class="fab fa-instagram instagram-icon"></i>
+                </div>
+            </div>
+            <div class="instagram-item">
+                <img src="~/images/IMG_7661.JPG" alt="Instagram Post">
+                <div class="instagram-overlay">
+                    <i class="fab fa-instagram instagram-icon"></i>
+                </div>
+            </div>
+            <div class="instagram-item">
+                <img src="~/images/IMG_7712.JPG" alt="Instagram Post">
+                <div class="instagram-overlay">
+                    <i class="fab fa-instagram instagram-icon"></i>
+                </div>
+            </div>
+            <div class="instagram-item">
+                <img src="~/images/IMG_7708.JPG" alt="Instagram Post">
+                <div class="instagram-overlay">
+                    <i class="fab fa-instagram instagram-icon"></i>
+                </div>
+            </div>
+            <div class="instagram-item">
+                <img src="~/images/IMG_7700.JPG" alt="Instagram Post">
+                <div class="instagram-overlay">
+                    <i class="fab fa-instagram instagram-icon"></i>
+                </div>
+            </div>
+            <div class="instagram-item">
+                <img src="~/images/IMG_7627.JPG" alt="Instagram Post">
+                <div class="instagram-overlay">
+                    <i class="fab fa-instagram instagram-icon"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="section-title text-center mb-5" data-aos="fade-up" data-aos-duration="600">Contact Us</h2>
+        <div class="row g-4">
+            <div class="col-lg-5 mb-4 mb-lg-0" data-aos="fade-right" data-aos-duration="600">
+                <div class="contact-info h-100">
+                    <h3 style="color: #04a1a8;" class="mb-4 text-primary fw-bold">Get in Touch</h3>
+                    <div class="mb-4 d-flex align-items-start">
+                        <i class="fas fa-map-marker-alt text-primary"></i>
+                    </div>
+                    <div class="mb-4 d-flex align-items-start">
+                        <i class="fas fa-phone text-primary"></i>
+                        <div class="ms-3">
+                            <h5 class="fw-bold">Phone Number</h5>
+                            <p class="mb-0"> +962-793055513</p>
+                        </div>
+                    </div>
+                    <div class="mb-4 d-flex align-items-start">
+                        <i class="fas fa-envelope text-primary"></i>
+                        <div class="ms-3">
+                            <h5 class="fw-bold">Email Address</h5>
+                            <p class="mb-0">bonnybaba23@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="mb-4 d-flex align-items-start">
+                        <i class="fas fa-clock text-primary"></i>
+                        <div class="ms-3">
+                            <h5 class="fw-bold">Working Hours</h5>
+                            <p class="mb-0">Online <br> 10:00 AM - 8:00 PM</p>
+                        </div>
+                    </div>
+                    <div class="social-icons mt-4">
+                        <h5 class="fw-bold mb-3">Follow Us</h5>
+                        <a href="https://www.facebook.com/bonnybaby23?locale=ar_AR" class="me-2"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/bonnybaby_clothes?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw ==" class="me-2"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7" data-aos="fade-left" data-aos-duration="600">
+                <div class="contact-form">
+                    <h3 style="color: #04a1a8;" class="mb-4 text-primary fw-bold">Send Us a Message</h3>
+                    <form>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="name" class="form-label fw-semibold">Your Name</label>
+                                    <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="email" class="form-label fw-semibold">Email Address</label>
+                                    <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject" class="form-label fw-semibold">Subject</label>
+                            <input type="text" class="form-control" id="subject" placeholder="Enter subject">
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="form-label fw-semibold">Message</label>
+                            <textarea class="form-control" id="message" rows="5" placeholder="Enter your message"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 mt-3 py-3">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@section Scripts {
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+
+    </script>
+}

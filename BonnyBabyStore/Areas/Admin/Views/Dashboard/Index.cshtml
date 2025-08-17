@@ -1,0 +1,172 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "_AdminLayout"; 
+}
+<div class="d-flex justify-content-end mb-3">
+    <a asp-area="Admin" asp-controller="Dashboard" asp-action="Reports" class="btn btn-info">
+        <i class="fas fa-chart-bar me-2"></i> View Reports
+    </a>
+</div>
+
+<div class="dashboard-content">
+    <div class="welcome-message fade-in">
+        <h1>Welcome Back, Bushra!</h1>
+        <p>Here's what's happening with your store today.</p>
+    </div>
+
+    <div class="dashboard-cards">
+        <div class="card slide-up" style="animation-delay: 0.1s;">
+            <div class="card-header">
+                <h5 class="card-title">Total Sales</h5>
+                <div class="card-icon pink">
+                    <i class="fas fa-shopping-bag"></i>
+                </div>
+            </div>
+            <div class="card-value">JOD 12,580</div>
+            <div class="card-label">Total sales this month</div>
+            <div class="card-footer">
+                <div class="card-trend up">
+                    <i class="fas fa-arrow-up"></i> 12.5%
+                </div>
+                <div class="card-period">vs last month</div>
+            </div>
+        </div>
+
+        <div class="card slide-up" style="animation-delay: 0.2s;">
+            <div class="card-header">
+                <h5 class="card-title">Orders</h5>
+                <div class="card-icon blue">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+            </div>
+            <div class="card-value">248</div>
+            <div class="card-label">Total orders this month</div>
+            <div class="card-footer">
+                <div class="card-trend up">
+                    <i class="fas fa-arrow-up"></i> 8.2%
+                </div>
+                <div class="card-period">vs last month</div>
+            </div>
+        </div>
+
+        <div class="card slide-up" style="animation-delay: 0.3s;">
+            <div class="card-header">
+                <h5 class="card-title">Customers</h5>
+                <div class="card-icon orange">
+                    <i class="fas fa-users"></i>
+                </div>
+            </div>
+            <div class="card-value">1,245</div>
+            <div class="card-label">Total customers</div>
+            <div class="card-footer">
+                <div class="card-trend up">
+                    <i class="fas fa-arrow-up"></i> 5.3%
+                </div>
+                <div class="card-period">vs last month</div>
+            </div>
+        </div>
+
+        <div class="card slide-up" style="animation-delay: 0.4s;">
+            <div class="card-header">
+                <h5 class="card-title">Products</h5>
+                <div class="card-icon green">
+                    <i class="fas fa-box"></i>
+                </div>
+            </div>
+            <div class="card-value">156</div>
+            <div class="card-label">Total active products</div>
+            <div class="card-footer">
+                <div class="card-trend up">
+                    <i class="fas fa-arrow-up"></i> 3.7%
+                </div>
+                <div class="card-period">vs last month</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="charts-section">
+        <div class="chart-card slide-up" style="animation-delay: 0.5s;">
+            <div class="chart-header">
+                <h5 class="chart-title">Sales Overview</h5>
+                <div class="chart-actions">
+                    <button class="chart-action active">Week</button>
+                    <button class="chart-action">Month</button>
+                    <button class="chart-action">Year</button>
+                </div>
+            </div>
+            <div class="chart-container">
+                <div class="sales-chart">
+                    <div class="chart-bar" style="height: 60%;" data-value="JOD 1,200" data-label="Mon"></div>
+                    <div class="chart-bar" style="height: 80%;" data-value="JOD 1,800" data-label="Tue"></div>
+                    <div class="chart-bar" style="height: 65%;" data-value="JOD 1,350" data-label="Wed"></div>
+                    <div class="chart-bar" style="height: 90%;" data-value="JOD 2,100" data-label="Thu"></div>
+                    <div class="chart-bar" style="height: 75%;" data-value="JOD 1,650" data-label="Fri"></div>
+                    <div class="chart-bar" style="height: 85%;" data-value="JOD 1,950" data-label="Sat"></div>
+                    <div class="chart-bar" style="height: 70%;" data-value="JOD 1,500" data-label="Sun"></div>
+                </div>
+            </div>
+        </div>
+        <div class="chart-card slide-up" style="animation-delay: 0.6s;">
+            <div class="chart-header">
+                <h5 class="chart-title">Sales by Category</h5>
+            </div>
+            <div class="chart-container">
+                <div class="pie-chart"></div>
+                <div class="pie-legend">
+                    <div class="legend-item"><div class="legend-color pink"></div><span>Clothing</span><span class="legend-value">30%</span></div>
+                    <div class="legend-item"><div class="legend-color blue"></div><span>Accessories</span><span class="legend-value">25%</span></div>
+                    <div class="legend-item"><div class="legend-color orange"></div><span>Toys</span><span class="legend-value">20%</span></div>
+                    <div class="legend-item"><div class="legend-color green"></div><span>Others</span><span class="legend-value">25%</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="recent-orders slide-up" style="animation-delay: 0.7s;">
+        <div class="chart-header">
+            <h5 class="chart-title">Recent Orders</h5>
+            <a asp-area="Admin" asp-controller="Orders" asp-action="Index" class="btn btn-sm btn-primary">View All</a>
+        </div>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr><th>Order ID</th><th>Customer</th><th>Date</th><th>Amount</th><th>Status</th><th>Action</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><span class="order-id">#ORD-0025</span></td><td><div class="customer-info"><img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Customer"><span class="customer-name">Sarah Johnson</span></div></td><td><span class="order-date">Jun 5, 2025</span></td><td><span class="order-amount">JOD 125.00</span></td><td><span class="order-status status-delivered">Delivered</span></td><td><button class="action-btn"><i class="fas fa-ellipsis-v"></i></button></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Animations and chart button logic specific to this page
+        document.addEventListener('DOMContentLoaded', function () {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            const slideElements = document.querySelectorAll('.slide-up');
+
+            fadeElements.forEach(element => {
+                element.style.opacity = '0';
+                setTimeout(() => { element.style.opacity = '1'; }, 100);
+            });
+
+            slideElements.forEach((element, index) => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }, 100 + (index * 100));
+            });
+        });
+
+        document.querySelectorAll('.chart-action').forEach(button => {
+            button.addEventListener('click', function () {
+                document.querySelectorAll('.chart-action').forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+}

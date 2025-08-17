@@ -1,0 +1,278 @@
+﻿@{
+    ViewData["Title"] = "Our Collections";
+}
+
+<section class="category-section py-5 mt-5">
+    <div class="container">
+        <h2 class="section-title">Our Collections</h2>
+
+        <div class="row">
+            <div class="col-lg-3 mb-4">
+                <div class="filter-container">
+                    <h3 class="filter-title">Filters</h3>
+
+                    <div class="filter-group">
+                        <h4 class="filter-group-title">Categories</h4>
+                        <div class="d-flex flex-wrap">
+                            <button class="filter-btn active" data-filter="all">All</button>
+                            <button class="filter-btn" data-filter="clothing">Clothing</button>
+                            <button class="filter-btn" data-filter="shoes">Shoes</button>
+                            <button class="filter-btn" data-filter="accessories">Accessories</button>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <h4 class="filter-group-title">Price Range</h4>
+                        <div class="price-range mb-3">
+                            <input type="number" class="price-input" placeholder="Min" min="0">
+                            <span>to</span>
+                            <input type="number" class="price-input" placeholder="Max" min="0">
+                        </div>
+                        <button class="btn btn-sm btn-outline-primary">Apply</button>
+                    </div>
+
+                    <div class="filter-group">
+                        <h4 class="filter-group-title">Age</h4>
+                        <div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="age0_6">
+                                <label class="form-check-label" for="age0_6">0-6 months</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="age6_12">
+                                <label class="form-check-label" for="age6_12">6-12 months</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="age12_18">
+                                <label class="form-check-label" for="age12_18">12-18 months</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="age18_24">
+                                <label class="form-check-label" for="age18_24">18-24 months</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <h4 class="filter-group-title">Color</h4>
+                        <div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="colorPink">
+                                <label class="form-check-label" for="colorPink">Pink</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="colorBlue">
+                                <label class="form-check-label" for="colorBlue">Blue</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="colorWhite">
+                                <label class="form-check-label" for="colorWhite">White</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="colorYellow">
+                                <label class="form-check-label" for="colorYellow">Yellow</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <button class="btn btn-main w-100">Reset Filters</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-9">
+                <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap">
+                    <div class="d-flex align-items-center mb-3 mb-md-0">
+                        <span class="me-2">Sort by:</span>
+                        <select class="form-select form-select-sm" style="width: auto;">
+                            <option selected>Newest</option>
+                            <option>Price: Low to High</option>
+                            <option>Price: High to Low</option>
+                            <option>Popularity</option>
+                        </select>
+                    </div>
+                    <div class="input-group" style="max-width: 300px;">
+                        <input type="text" class="form-control" placeholder="Search products...">
+                        <button class="btn btn-outline-secondary" type="button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product-grid">
+                    <div class="product-card position-relative shoes">
+                        <span class="product-badge new">New</span>
+                        <img src="~/images/IMG_7696.JPG" alt="Baby Shoes" class="product-image">
+                        <div class="product-info">
+                            <h3 class="product-title">Soft Baby Shoes</h3>
+                            <div class="product-price">JOD 21.00</div>
+                            <p class="product-description">Soft and comfy shoes for tiny feet.</p>
+                            <div class="product-meta">
+                                <div class="product-rating">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <div class="product-stock">In Stock</div>
+                            </div>
+                            <div class="product-actions">
+                                <a asp-controller="Products" asp-action="Index" class="btn-details">View Details</a>
+                                <button class="btn-cart">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card position-relative accessories">
+                        <img src="~/images/IMG_7674.JPG" alt="Baby Hat" class="product-image">
+                        <div class="product-info">
+                            <h3 class="product-title">Cute Baby Hat</h3>
+                            <div class="product-price">JOD 10.50</div>
+                            <p class="product-description">Adorable hat to keep your baby warm.</p>
+                            <div class="product-meta">
+                                <div class="product-rating">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                                </div>
+                                <div class="product-stock">In Stock</div>
+                            </div>
+                            <div class="product-actions">
+                                <a asp-controller="Products" asp-action="Index" class="btn-details">View Details</a>
+                                <button class="btn-cart">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card position-relative clothing">
+                        <span class="product-badge sale">Sale</span>
+                        <img src="~/images/IMG_7644.JPG" alt="Baby Onesie" class="product-image">
+                        <div class="product-info">
+                            <h3 class="product-title">Soft Baby Onesie</h3>
+                            <div class="product-price">JOD 17.50</div>
+                            <p class="product-description">Comfortable onesie for everyday wear.</p>
+                            <div class="product-meta">
+                                <div class="product-rating">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </div>
+                                <div class="product-stock">In Stock</div>
+                            </div>
+                            <div class="product-actions">
+                                <a asp-controller="Products" asp-action="Index" class="btn-details">View Details</a>
+                                <button class="btn-cart">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card position-relative accessories">
+                        <img src="~/images/IMG_7652.JPG" alt="Baby Socks" class="product-image">
+                        <div class="product-info">
+                            <h3 class="product-title">Cozy Baby Socks</h3>
+                            <div class="product-price">JOD 7.00</div>
+                            <p class="product-description">Keep tiny feet warm with these adorable socks.</p>
+                            <div class="product-meta">
+                                <div class="product-rating">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                                </div>
+                                <div class="product-stock">In Stock</div>
+                            </div>
+                            <div class="product-actions">
+                                <a asp-controller="Products" asp-action="Index" class="btn-details">View Details</a>
+                                <button class="btn-cart">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card position-relative shoes">
+                        <img src="~/images/IMG_7669.JPG" alt="Baby Booties" class="product-image">
+                        <div class="product-info">
+                            <h3 class="product-title">Baby Booties</h3>
+                            <div class="product-price">JOD 15.50</div>
+                            <p class="product-description">Warm and cozy booties for cold days.</p>
+                            <div class="product-meta">
+                                <div class="product-rating">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                                </div>
+                                <div class="product-stock">In Stock</div>
+                            </div>
+                            <div class="product-actions">
+                                <a asp-controller="Products" asp-action="Index" class="btn-details">View Details</a>
+                                <button class="btn-cart">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card position-relative clothing">
+                        <img src="~/images/IMG_7641.JPG" alt="Baby Dress" class="product-image">
+                        <div class="product-info">
+                            <h3 class="product-title">Baby Dress</h3>
+                            <div class="product-price">JOD 24.50</div>
+                            <p class="product-description">Beautiful dress for special occasions.</p>
+                            <div class="product-meta">
+                                <div class="product-rating">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <div class="product-stock">In Stock</div>
+                            </div>
+                            <div class="product-actions">
+                                <a asp-controller="Products" asp-action="Index" class="btn-details">View Details</a>
+                                <button class="btn-cart">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <nav aria-label="Page navigation" class="mt-5">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        // Filter functionality
+        document.addEventListener('DOMContentLoaded', function () {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const products = document.querySelectorAll('.product-card');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function () {
+                    // Remove active class from all buttons
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+
+                    const filter = this.getAttribute('data-filter');
+
+                    products.forEach(product => {
+                        if (filter === 'all' || product.classList.contains(filter)) {
+                            product.style.display = 'block';
+                        } else {
+                            product.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+}

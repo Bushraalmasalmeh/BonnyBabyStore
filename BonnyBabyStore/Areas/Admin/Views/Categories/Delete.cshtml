@@ -1,0 +1,62 @@
+﻿@model BonnyBabyStore.Models.Category
+
+@{
+    ViewData["Title"] = "Delete Category";
+    Layout = "_AdminLayout"; 
+}
+
+@section Styles {
+    <style>
+        .form-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 30px;
+        }
+    </style>
+}
+<h1>Delete Category</h1>
+
+<h3 class="text-danger">Are you sure you want to delete this category?</h3>
+<p class="text-danger">This action cannot be undone and the category's image will also be permanently deleted.</p>
+
+<div>
+    <h4>Category: @Model.Name</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt class="col-sm-3">
+            Image
+        </dt>
+        <dd class="col-sm-9">
+            @if (!string.IsNullOrEmpty(Model.ImageUrl))
+            {
+                <img src="@Model.ImageUrl" alt="Category Image" style="max-width: 300px; max-height: 300px; border-radius: 8px;" />
+            }
+            else
+            {
+                <p>No image available.</p>
+            }
+        </dd>
+    </dl>
+
+    <form asp-action="Delete" class="mt-4">
+        @* This hidden input is crucial to tell the controller which item to delete *@
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
